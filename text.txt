@@ -1,0 +1,130 @@
+1. npm init -y
+2. npm i express
+3. npm i mongoose 
+4. give the header files in app.js
+5. start the server 
+6. To start the server use nodemon app.js 
+7. create basic api
+8. connect api with database 
+9. Connect To DB code catch for any errors occurs
+10. create models folder
+11. listing js is the mongoDB database js file preapre it accroding to requirments
+11.1. set url of image inside image DB (that's a new process how tos et image url in database)
+12. ****** Create a  Folder init. data.js inside it. where sample data will store . create another
+file inside it index.js .... *** To connect with database and uplaod first connect terminal to 
+cd init then node index.js it will store all data of data.js in database.  
+13. create a views folder (inside view there is also a listings folder to handel) to handel ejs template , create a Index route for it also. 
+14. ./listings/index.ejs :- refer ScreeShot - 1198 
+15. next step Show Route :- 
+16. num.toLocalString("en-IN) -> to add commas after number into Indian Standered
+17. NEW and CREATE ROUTE :- refer ScreeShot - 1199
+18. Edit and Update Route :- screenshot - 1201
+:******** To conver post reqest into put request (which is needed for edit form) we use method override package ********* use the Pull mongoose ton delte any review by the client
+ npm i method-override 
+19. Delete Route :- 
+20.
+
+// **************** Phase 2 **************************
+1. install new tempalte :- npm i ejs-mate
+2. create a new folder layouts inside it make a boilerplate.ejs
+3. waht is the use of boilerplate template ? remove all parts of index.ejs and show.ejs except body aprt and repalce with <% layout("/layouts/boilerplate") %> that will create a boilerplate tempalte
+4. cretae a public folder inside it a css folder and style.css file, style file cll in 
+boilerplate.ejs file  (all the style applied on page)
+5. navbar :- import bootstap  first then copy a navbar and edit the front web page accrding to it , 
+add some bg-color , style in css , hide "Create New Listings" in index.js , 
+6.footer 
+7. "styling index" :- this is the step where evry listing converted into different cards vwery import step :
+by adding a tempalte in bootstap in "index.ejs" file add list of listing converted into listings
+
+8. styling new index :- 
+9. styling New Listing :-
+10. Styling Edit Listing :-
+11. Styling Show Listing :- 
+
+// *************** Phase 1 (Part c) **********************
+1. Clint Side from validation :- There are two side of validation client side and server side ,
+set "required" keyword in new.ejs for bounded. " novalidate class="needs-validation" " use this in new.ejs to make the website validate in all browser. cretae a js folder and script file in public , and copy a code form bootstap  & must add this script.js file in boilerplate
+2. Success & Failure Text :-  add this in new.ejs " <div class="invalid-feedback">Please enter a Valid Price</div> " , similar thigs should done in edit.ejs , 
+3. custom error Handling :- use middleware and error handeling in "Create Route and below app.use"
+4. Add wrapAsync :-  create a new folder utils , and make file file wrapAsync.js ,  make  a change in 
+"Create Route" remove try and catch clause in it.   
+5. Add ExpressError :- create a ExpressError file in utils , modify the "app.use"  , every route repalce with "wrapAsync ()" function bcz if we we facing error don't stop execution rather handel the error by this function , create a function to handel ExpressError ,  small change in "Create Route & Upadte Route" that  error can't handel by server due to mistake of client and throw custom errors to client. 
+6. Error Ejs :- It's a deafult error page , crate a page "error.ejs" in "Views", render it in "app.use()"
+and samll change in "app.use()" ,  
+7. validatation for schema :- change in "create route",  if there are any schema is missing then , throw an error for that for that install a new npm package name  joi (npm i joi) , (by joi define a  schema for server side vcalidation) , create  a file schema.js and define joi inside it then make  a samll change in "Create Route" 
+8. validatation for schema (middleware) :- crete a new function named validateListing to create  a inbuilt middleware , call validateListing in "crate route & Upadte route", 
+9.
+10.
+
+// ************* Phase - 2 (part a) *****************
+1. Before starting read a mongoose Documentation :- https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design  *******************
+
+2. Creating Review Model :- create a new file "Review.js" in models folder there create a new schema for
+Review and also Reviews schema added to "listing.js" file as name of Review
+3. Create Reviews (step-1) :- setting up a Review form for that create the from in "show.ejs" , just cretae a basic form diagram.  
+4. Create Reviews (step-2) :- create a "Post Route" to submit the review in database in app.js , 
+5. validatation for Reviews :- There are mainly two type of validatation client by form and server side validatation by joi ,  add script.js file in boilerplate , for server silde validatation -> include module.export with joi ,  create "validateReview" as middleware add do same work what I done in "listings" case in first.
+6. render Reviews :- call populate in "show.js" to connect objectid with corosponding datas , 
+under all review heading stores the review at the bottom of the Page.
+7. Styling Reviews :- style the review section of the page using card properties of bootstap
+8. Delete Reviews :-  create a Delete botton in review section ,  add a new route named
+"Delete review route" 
+
+***** $pull -> The $pull operator removes from an existing array all instances of a value or values that match a specified condition. ******
+9. Handling : Delete Listing :- when you delet the listing brom website reviews will also be deleted from the database for that "listningSchema.post" call in "listing.js"
+
+// *************** Phase 2 (Part b) ****************
+1. Express Routers are a way to organize your Express application such that our primary app.js file does not become bloated. const router = express.Router() , create a new folder name classroom and a "server.js file" , and there , there is two side one is "user" another is "Post" , and create a new folder named "rotue" inside classroom folder and and create two file "user.js" and "server.js" inside route folder.
+2. using Express Router :- replace  all the "app" with "router". segrigate the data into two different routes , by taking app.use("/users" , users).  Do same for "post"
+3. restructuring Listings :- all the function related to listings are restructuring in a new file called 
+"review.js" an add "app.use("/listings" , listings);" in app.js and "const listings = require("./routes/listing.js");" in app.js also , add some function extra in listing.js.
+4. restructuring reviews :-  same as "listings" but use a new concept "{mergeParams : true}" in router 
+which help to add new reviews in the website , except everything remain same.
+5. Web cookies :- HTTP cookies are small blocks of data created by a web server while a user is browsing a website and placed on the user's computer or other device by the user's web browser.
+6. Sending cookies :- how to send a cookies by "app.get" function.
+7. Cookies parser :- direct we can't send cookies for that use a middleware name "cookies parser" , insatll it by "npm install cookie-parser"
+8. Signed cookies :- which cookies we pass by server to protect the cookies from any kind of alteration ,
+ we send "signed cookies" and then also "verify" the cookies.
+9.
+
+// ************* Phase 2 (part c) ***************
+What is State?
+Stateful Protocol :- Stateful Protocol require server to save the status and session information. eg - ftp
+Stateless Protocol :- Stateless Protocol does not require the server to retain the server information or
+eg - http
+
+2. Express Session :-  Express Session store some data at temporary storage and send session id as a form of cookies to the client , insatll it in "classroom" folder "npm install express-session"
+3. Exploring Session Options :-  
+4. Storing & Using Session Info :- 
+5. using connect-flash :- 
+6. using res.locals :- 
+7.
+
+
+// ************** 
+pbkdf2 hashing algortihm is using in my project. 
+username :- Mridul Patra1
+email :- mridulpatra03@gamil.com
+password :- abcd
+
+username : abc
+email : abc@gmail.com
+password : 1234
+
+username : demo
+email : demo@gmail.com
+password : 1234
+
+username : demo1
+email : demo1@gmail.com
+password : 1234
+
+// ***************** Mongodb Atlas  *****************
+using the account patrasum05@gamil.com
+username :- Wander-Lust
+Password :- wanderLust03
+mongodb+srv://Wander-Lust:wanderLust03@cluster0.rgucw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+// ************ Render ****************
+
+to run this use nodemon app.js
