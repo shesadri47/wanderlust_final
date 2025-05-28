@@ -8,7 +8,7 @@ main()
     console.log("Connect To DB");
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });
 
 async function main() {
